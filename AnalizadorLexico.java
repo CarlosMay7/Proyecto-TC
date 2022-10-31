@@ -17,6 +17,12 @@ public class AnalizadorLexico {
                     contadorLinea++;
                     linea = archivo.nextLine();
                     listaPalabras = Limpiador.limpiarTodo(linea);
+
+                    for (String str : listaPalabras){
+                        if (ERR.identificadores(str)==false){
+                            System.out.println("Error en la linea "+contadorLinea+" en la palabra "+str);
+                        }
+                    }
                     
                     //Aquí se puede hacer la función de validación de las palabras, si alguna no cumple pueden modificar el ArrayList y ya 
                 
