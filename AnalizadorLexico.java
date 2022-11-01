@@ -8,7 +8,9 @@ public class AnalizadorLexico {
         String linea;
         int contadorLinea=0;
         ArrayList<String> palabrasLimpias = new ArrayList<>();
-        ArrayList<String> listaPalabras = new ArrayList<>();
+        ArrayList<String> palabrasLimpiasConOperadores = new ArrayList<>();
+        ArrayList<String> PalabrasSinOperadores = new ArrayList<>();
+        ArrayList<String> palabrasConOperadores= new ArrayList<>();
 
         try {
             File cuenta = new File(nombreArchivo);
@@ -16,9 +18,10 @@ public class AnalizadorLexico {
                 while(archivo.hasNextLine()){
                     contadorLinea++;
                     linea = archivo.nextLine();
-                    listaPalabras = Limpiador.limpiarTodo(linea);
+                    PalabrasSinOperadores = Limpiador.limpiarTodo(linea);
+                    palabrasConOperadores = Limpiador.limpiarConOperadores(linea);
 
-                    for (String str : listaPalabras){
+                    for (String str : PalabrasSinOperadores){
                         if (ERR.identificadores(str)==false){
                             System.out.println("Error en la linea "+contadorLinea+" en la palabra "+str);
                         }
@@ -27,9 +30,14 @@ public class AnalizadorLexico {
                     //Aquí se puede hacer la función de validación de las palabras, si alguna no cumple pueden modificar el ArrayList y ya 
                 
 
-                    for (String str : listaPalabras){
+                    for (String str : PalabrasSinOperadores){
                         palabrasLimpias.add(str);
                     }
+
+                    for (String str : palabrasConOperadores){
+                        palabrasLimpiasConOperadores.add(str);
+                    }
+
 
                     //Aquí haré la función de imprimir 
 
