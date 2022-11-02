@@ -141,8 +141,10 @@ public class ER {
         }
 
         if(literalesNumericasHexadecimales(palabraClasificar)==true){
-
-
+            
+            val[contadorVal][0] = palabraClasificar;
+            val[contadorVal][1] = Integer.toString(Limpiador.convertirHexaADecimal(palabraClasificar));
+            contadorVal++;
         }
 
 

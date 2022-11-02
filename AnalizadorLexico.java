@@ -29,8 +29,8 @@ public class AnalizadorLexico {
                     
                     //Aquí se puede hacer la función de validación de las palabras, si alguna no cumple pueden modificar el ArrayList y ya 
                 
-                    for (String str : PalabrasSinOperadores){
-                        palabrasLimpias.add(str);
+                    for (String palabra : PalabrasSinOperadores){
+                        palabrasLimpias.add(palabra);
                     }
 
                     for (String str : palabrasConOperadores){
@@ -40,11 +40,9 @@ public class AnalizadorLexico {
 
                     //Aquí haré la función de imprimir 
 
-
-
-                    //checar si está en el lenguaje
-                    //escribir tokens en archivo (adentro se llamara a los metodos de separacion por cada operador)
-                    //metodo de convertir hexa a decimal
+                    //checar si está en el lenguaje  |
+                    //escribir tokens en archivo (adentro se llamara a los metodos de separacion por cada operador) |
+                    //metodo de convertir hexa a decimal |
                 }
                 String [][] ids = new String [palabrasLimpias.size()][2];
                 String [][] txt = new String [palabrasLimpias.size()][2];
@@ -54,12 +52,21 @@ public class AnalizadorLexico {
                 for (String palabra : palabrasLimpias){
                     ER.clasificarPalabra(palabra, ids, txt, val, contadorIDs, contadorTxt, contadorVal);
                 }
-
+                
+                File archivoLista = new File("prueba.txt"); //algo.lex
+                File archivoMatrices = new File("matriz.txt"); //algo.lex
+                
+                ManipuladorArchivos.crearArchivo(archivoLista);
+                ManipuladorArchivos.crearArchivo(archivoMatrices);
+                
+                ManipuladorArchivos.imprimirLista(palabrasLimpias, archivoLista);
+                ManipuladorArchivos.imprimirArreglos(ids, txt,val, archivoMatrices);
             }
         } catch (Exception e) {
-            System.out.println("Error al escribir");
-        }
-        
+            System.out.println("Error al leer");
+        }        
     }
 }
+
+
 

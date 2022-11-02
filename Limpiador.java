@@ -144,11 +144,7 @@ public class Limpiador {
             }
         }
 
-        
-
-
         return palabrasLimpias;
-        
     }
 
     public static String [] limpiarAsignacion (String cadenaLimpiar){
@@ -218,11 +214,12 @@ public class Limpiador {
 
         int numeroConvertido;
         numeroConvertir = limpiarHexa(numeroConvertir);
-
         numeroConvertido = Integer.parseInt(numeroConvertir,16);
 
         return numeroConvertido;
     }
+
+    
 
     
 }
