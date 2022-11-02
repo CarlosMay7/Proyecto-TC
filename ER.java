@@ -1,7 +1,6 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class ER {
 
      /*public static boolean verficiarPalabraLenguaje (String palabraRevisar){
@@ -76,7 +75,7 @@ public class ER {
         return coincidencia;
     }
 
-    public static boolean asigancion(String palabraRevisar){
+    public static boolean asignacion(String palabraRevisar){
 
         Pattern patron = Pattern.compile(".+=.+");
         Matcher matcher = patron.matcher(palabraRevisar);
@@ -96,21 +95,60 @@ public class ER {
         return coincidencia;
     }
 
-    public static boolean verificarER(){
+    public static boolean verificarER(String palabraRevisar){
 
         boolean validar = false;
 
-        if(identificadores(null) && literalesDeTexto(null) && literalesNumericasDecimales(null)
-        && literalesNumericasHexadecimales(null) && operadoresNumericos(null)
-        && palabrasReservadas(null) && asigancion(null) && comentario(null) == true){
+        if(identificadores(palabraRevisar) || literalesDeTexto(palabraRevisar) || literalesNumericasDecimales(palabraRevisar)
+        || literalesNumericasHexadecimales(palabraRevisar) || operadoresNumericos(palabraRevisar)
+        || palabrasReservadas(palabraRevisar) || asignacion(palabraRevisar) || comentario(palabraRevisar) == true){
             validar = true;
             //System.out.println("cumple con las condiciones");
         }  else{
+            validar = false;
             //System.out.println("no hubo coincidencia");
         }
 
         return validar;
     }
+
+    public static void clasificarPalabra (String palabraClasificar, String [][] ids, String [][] txt, String [][] val,int contadorIDs, int contadorTxt, int contadorVal){
+
+        if (identificadores(palabraClasificar)==true){
+            ids[contadorIDs][0] = palabraClasificar;
+            if (contadorIDs<10){
+                ids[contadorIDs][1] = "id0"+contadorIDs;
+            }else {
+                ids[contadorIDs][1] = "id"+contadorIDs;
+            }
+            contadorIDs++;
+        }
+
+        if (literalesDeTexto(palabraClasificar)==true){
+            txt[contadorTxt][0] = palabraClasificar;
+            if (contadorTxt<10){
+                txt[contadorTxt][1] = "txt0"+contadorIDs;
+            }else {
+                txt[contadorTxt][1] = "txt"+contadorIDs;
+            }
+            contadorTxt++;
+        }
+
+        if (literalesNumericasDecimales(palabraClasificar)==true){
+            val[contadorVal][0] = palabraClasificar;
+            val[contadorVal][1] = palabraClasificar;
+            contadorVal++;
+        }
+
+        if(literalesNumericasHexadecimales(palabraClasificar)==true){
+
+
+        }
+
+
+    }
+
+
 
 
 }

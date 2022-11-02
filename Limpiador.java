@@ -12,6 +12,7 @@ public class Limpiador {
             palabrasLimpias.add(cadenaLimpiar);
             encontrada=true;
             sigue = false;
+
         }
         for (int reservada =0; reservada<palabrasReservadas.length && encontrada==false; reservada++){
             if (cadenaLimpiar.contains(palabrasReservadas[reservada])){
@@ -205,5 +206,23 @@ public class Limpiador {
         }
         return reservadasSeparado;
     }
+
+    public static String limpiarHexa (String hexa){
+
+        String[] hexaSeparado = hexa.split("x");
+
+        return hexaSeparado[1];
+    }
+
+    public static int convertirHexaADecimal (String numeroConvertir){
+
+        int numeroConvertido;
+        numeroConvertir = limpiarHexa(numeroConvertir);
+
+        numeroConvertido = Integer.parseInt(numeroConvertir,16);
+
+        return numeroConvertido;
+    }
+
     
 }
