@@ -6,7 +6,8 @@ public class prueba {
         
         StringBuilder sb = new StringBuilder();
         ArrayList<String> palabraslindas = new ArrayList<>();
-        String prueba = "IMPRIME 25-6782+78-25";
+        String reservada = "# Programa fuente en ellenguaje MIO para expresiones aritméticas";
+        String prueba = "+";
         String cadenaLimpiar ="uwuuuu=78+25/75/525-96+33";
         String hola = "tukutu =             780-890+0x842* 581-888";
         Limpiador limp = new Limpiador();
@@ -83,6 +84,10 @@ public class prueba {
         
         ManipuladorArchivos.imprimirLista(palabraslindas, archivoLista);
         ManipuladorArchivos.imprimirArreglos(miMatriz1, miMatriz2,miMatriz3, archivoMatrices);
+
+        System.out.println(ER.palabrasReservadas(reservada));
+
+        System.out.println(ER.comentario(reservada));
 
         /*for (String str : Limpiador.limpiarTodo(hola)){
             palabraslindas.add(str);

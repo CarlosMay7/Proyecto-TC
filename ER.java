@@ -3,12 +3,6 @@ import java.util.regex.Pattern;
 
 public class ER {
 
-     /*public static boolean verficiarPalabraLenguaje (String palabraRevisar){
-        boolean dentro;
-        
-        return dentro;
-    }*/
-
     public static boolean identificadores (String palabraRevisar){
 
         Pattern patron = Pattern.compile("^[a-zA-Z].[a-zA-Z0-9_-]{0,15}");
@@ -16,18 +10,13 @@ public class ER {
 
         boolean coincidencia = matcher.matches();
 
-            /*if(coincidencia == true){
-                System.out.println("Hubo coincidencia");
-            } else{
-                System.out.println("Error");
-            }*/
-
         return coincidencia;
     }
 
     public static boolean literalesDeTexto(String palabraRevisar){
-
-        Pattern patron = Pattern.compile("^[“].[a-zA-Z0-9\\s+]*[”]");
+        char comilla = '"';
+        String erSinLaCosaEsa = "^[“].[a-zA-Z0-9\\s+]*["+comilla+"]";
+        Pattern patron = Pattern.compile(erSinLaCosaEsa);
         Matcher matcher = patron.matcher(palabraRevisar);
 
         boolean coincidencia = matcher.matches();
@@ -35,6 +24,7 @@ public class ER {
         return coincidencia;
     }
 
+    
     public static boolean literalesNumericasDecimales(String palabraRevisar){
 
         Pattern patron = Pattern.compile("[0-9-.].+");
@@ -57,7 +47,7 @@ public class ER {
 
     public static boolean operadoresNumericos(String palabraRevisar){
        
-        Pattern patron = Pattern.compile(".+[*|/|+|-].+");
+        Pattern patron = Pattern.compile("[*|/|+|-]");
         Matcher matcher = patron.matcher(palabraRevisar);
 
         boolean coincidencia = matcher.matches();
@@ -67,17 +57,23 @@ public class ER {
 
     public static boolean palabrasReservadas(String palabraRevisar){
         
-        Pattern patron = Pattern.compile("^[PROGRAMA|FINPROG|IMPRIME|LEE].+");
-        Matcher matcher = patron.matcher(palabraRevisar);
+        boolean coincidencia = false;
+        String [] palabrasReservadas = {"PROGRAMA","FINPROG","IMPRIME","LEE"};
 
-        boolean coincidencia = matcher.matches();
+        for (String palabra : palabrasReservadas){
+            if (palabraRevisar.equals(palabra)){
+                coincidencia = true;
+                break;
+            }
+            //caso especial imprime
+        }
 
         return coincidencia;
     }
 
     public static boolean asignacion(String palabraRevisar){
 
-        Pattern patron = Pattern.compile(".+=.+");
+        Pattern patron = Pattern.compile("=");
         Matcher matcher = patron.matcher(palabraRevisar);
 
         boolean coincidencia = matcher.matches();
@@ -103,10 +99,8 @@ public class ER {
         || literalesNumericasHexadecimales(palabraRevisar) || operadoresNumericos(palabraRevisar)
         || palabrasReservadas(palabraRevisar) || asignacion(palabraRevisar) || comentario(palabraRevisar) == true){
             validar = true;
-            //System.out.println("cumple con las condiciones");
         }  else{
             validar = false;
-            //System.out.println("no hubo coincidencia");
         }
 
         return validar;
@@ -114,7 +108,7 @@ public class ER {
 
     public static void clasificarPalabra (String palabraClasificar, String [][] ids, String [][] txt, String [][] val,int contadorIDs, int contadorTxt, int contadorVal){
 
-        if (identificadores(palabraClasificar)==true){
+        if (identificadores(palabraClasificar)==true  && palabrasReservadas(palabraClasificar)==false){
             ids[contadorIDs][0] = palabraClasificar;
             if (contadorIDs<10){
                 ids[contadorIDs][1] = "id0"+contadorIDs;
@@ -143,7 +137,7 @@ public class ER {
         if(literalesNumericasHexadecimales(palabraClasificar)==true){
             
             val[contadorVal][0] = palabraClasificar;
-            val[contadorVal][1] = Integer.toString(Limpiador.convertirHexaADecimal(palabraClasificar));
+            val[contadorVal][1] = Limpiador.convertirHexaADecimal(palabraClasificar);
             contadorVal++;
         }
 

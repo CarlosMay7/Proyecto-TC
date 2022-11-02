@@ -53,10 +53,7 @@ public class Limpiador {
                 }
             }
         }
-
         
-
-
         return palabrasLimpias;
         
     }
@@ -67,11 +64,12 @@ public class Limpiador {
         ArrayList<String> palabrasLimpias = new ArrayList<>();
         int contadorResta, contadorMulti, contadorDiv, contadorPalabrasLimpias;
         boolean sigue = true, encontrada=false;
-        if (cadenaLimpiar.startsWith("#")){ 
+        if (ER.comentario(cadenaLimpiar)){ 
             palabrasLimpias.add(cadenaLimpiar);
             encontrada=true;
             sigue = false;
         }
+
         for (int reservada =0; reservada<palabrasReservadas.length && encontrada==false; reservada++){
             if (cadenaLimpiar.contains(palabrasReservadas[reservada])){
                 cadenaSinReservadas = limpiarReservadas(cadenaLimpiar, palabrasReservadas);
@@ -85,7 +83,6 @@ public class Limpiador {
 
         if (sigue == true){
             if(cadenaLimpiar.contains(" ")){
-                System.out.println("Espacio");
                 cadenaLimpiar = cadenaLimpiar.replaceAll(" ", "");
             }
             if (cadenaLimpiar.contains("=")){
@@ -194,7 +191,6 @@ public class Limpiador {
     public static String[] limpiarReservadas (String cadenaLimpiar, String [] palabrasReservadas){
         String [] reservadasSeparado=null;
 
-
         for (String str : palabrasReservadas){
             if (cadenaLimpiar.contains(str)){
                 reservadasSeparado = limpiarEspacio(cadenaLimpiar);
@@ -210,16 +206,12 @@ public class Limpiador {
         return hexaSeparado[1];
     }
 
-    public static int convertirHexaADecimal (String numeroConvertir){
+    public static String convertirHexaADecimal (String numeroConvertir){
 
         int numeroConvertido;
         numeroConvertir = limpiarHexa(numeroConvertir);
         numeroConvertido = Integer.parseInt(numeroConvertir,16);
-
-        return numeroConvertido;
+        String numeroCadena = Integer.toString(numeroConvertido);
+        return numeroCadena;
     }
-
-    
-
-    
 }
