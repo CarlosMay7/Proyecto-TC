@@ -47,6 +47,9 @@ public class Limpiador {
                     for (contadorDiv=0; contadorDiv<cadenaSinMulti.length;contadorDiv++){
                         cadenaSinDivision = limpiarDiv(cadenaSinMulti[contadorDiv]);
                         for (contadorPalabrasLimpias=0; contadorPalabrasLimpias<cadenaSinDivision.length;contadorPalabrasLimpias++){
+                            if(cadenaSinDivision[contadorPalabrasLimpias].contains(" ")){
+                                cadenaSinDivision[contadorPalabrasLimpias] = cadenaSinDivision[contadorPalabrasLimpias].replaceAll(" ", "");
+                            }
                             palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias ]); 
                         }
                     }
@@ -113,6 +116,10 @@ public class Limpiador {
                             cadenaSinDivision[contsigno]= cadenaSinDivision[contsigno].concat("/");
                         }
                         for (contadorPalabrasLimpias=0; contadorPalabrasLimpias<cadenaSinDivision.length;contadorPalabrasLimpias++){
+
+                            if(cadenaSinDivision[contadorPalabrasLimpias].contains(" ")){
+                                cadenaSinDivision[contadorPalabrasLimpias] = cadenaSinDivision[contadorPalabrasLimpias].replaceAll(" ", "");
+                            }
                             if (cadenaSinDivision[contadorPalabrasLimpias].contains("+")){
                                 palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias].substring(0,cadenaSinDivision[contadorPalabrasLimpias].length()-1)); 
                                 palabrasLimpias.add("+");
@@ -193,7 +200,11 @@ public class Limpiador {
 
         for (String str : palabrasReservadas){
             if (cadenaLimpiar.contains(str)){
-                reservadasSeparado = limpiarEspacio(cadenaLimpiar);
+                if (!(str.equals("IMPRIME"))){
+                    reservadasSeparado = limpiarEspacio(cadenaLimpiar);
+                } else {
+                    
+                }
             }
         }
         return reservadasSeparado;

@@ -37,7 +37,6 @@ public class AnalizadorLexico {
 
                 for (String str : palabrasConOperadores){
                     palabrasLimpiasConOperadores.add(str);
-                    System.out.println(str);
                 }
                 //Aquí haré la función de imprimir 
 
@@ -74,13 +73,13 @@ public class AnalizadorLexico {
                     contadorTxt++;
                 }
         
-                if (ER.literalesNumericasDecimales(palabra)==true){
+                if (ER.literalesNumericasDecimales(palabra)==true && ER.literalesNumericasHexadecimales(palabra)==false){
                     val[contadorVal-1][0] = palabra;
                     val[contadorVal-1][1] = palabra;
                     contadorVal++;
                 }
         
-                if(ER.literalesNumericasHexadecimales(palabra)==true){
+                if(ER.literalesNumericasHexadecimales(palabra)==true ){
                     
                     val[contadorVal-1][0] = palabra;
                     val[contadorVal-1][1] = Limpiador.convertirHexaADecimal(palabra);
@@ -94,7 +93,7 @@ public class AnalizadorLexico {
                 ManipuladorArchivos.crearArchivo(archivoLista);
                 ManipuladorArchivos.crearArchivo(archivoMatrices);
                 
-                ManipuladorArchivos.imprimirLista(palabrasLimpias, archivoLista);
+                ManipuladorArchivos.imprimirLista(palabrasLimpiasConOperadores, archivoLista);
                 ManipuladorArchivos.imprimirArreglos(ids, txt,val, archivoMatrices);
                 
         } catch (IOException e) {
