@@ -14,9 +14,8 @@ public class ER {
     }
 
     public static boolean literalesDeTexto(String palabraRevisar){
-        char comilla = '"';
-        String erSinLaCosaEsa = "^[“].[a-zA-Z0-9\\s+]*["+comilla+"]";
-        Pattern patron = Pattern.compile(erSinLaCosaEsa);
+        
+        Pattern patron = Pattern.compile("^\".[a-zA-Z0-9\\s+]*\"");
         Matcher matcher = patron.matcher(palabraRevisar);
 
         boolean coincidencia = matcher.matches();
