@@ -9,6 +9,7 @@ public class AnalizadorLexico {
     public static void analisisL(String nombreArchivo){
         String linea;
         int contadorLinea=0;
+        boolean crear=true;
         ArrayList<String> palabrasLimpias = new ArrayList<>();
         ArrayList<String> palabrasLimpiasConOperadores = new ArrayList<>();
         ArrayList<String> PalabrasSinOperadores = new ArrayList<>();
@@ -26,6 +27,7 @@ public class AnalizadorLexico {
                 for (String str : PalabrasSinOperadores){
                     if (ER.verificarER(str)==false){
                         System.out.println("Error en la linea "+contadorLinea+" en la palabra "+str);
+                        crear = false;
                     }
                 }
                 
@@ -47,54 +49,58 @@ public class AnalizadorLexico {
                     System.out.println(palabra);
                 }  */          
             }
-            String [][] ids = new String [palabrasLimpias.size()][2];
-            String [][] txt = new String [palabrasLimpias.size()][2];
-            String [][] val = new String [palabrasLimpias.size()][2];
-            int contadorIDs=1, contadorTxt=1, contadorVal=1;
+            if (crear == true){
+                String [][] ids = new String [palabrasLimpias.size()][2];
+                String [][] txt = new String [palabrasLimpias.size()][2];
+                String [][] val = new String [palabrasLimpias.size()][2];
+                int contadorIDs=1, contadorTxt=1, contadorVal=1;
+                
+                for (String palabra : palabrasLimpias){
+                    if (ER.identificadores(palabra)==true  && ER.palabrasReservadas(palabra)==false){
+                        ids[contadorIDs-1][0] = palabra;
+                        if (contadorIDs<10){
+                            ids[contadorIDs-1][1] = "id0"+contadorIDs;
+                        }else {
+                            ids[contadorIDs-1][1] = "id"+contadorIDs;
+                        }
+                        contadorIDs++;
+                    }
             
-            for (String palabra : palabrasLimpias){
-                if (ER.identificadores(palabra)==true  && ER.palabrasReservadas(palabra)==false){
-                    ids[contadorIDs-1][0] = palabra;
-                    if (contadorIDs<10){
-                        ids[contadorIDs-1][1] = "id0"+contadorIDs;
-                    }else {
-                        ids[contadorIDs-1][1] = "id"+contadorIDs;
+                    if (ER.literalesDeTexto(palabra)==true){
+                        txt[contadorTxt][0] = palabra;
+                        if (contadorTxt<10){
+                            txt[contadorTxt-1][1] = "txt0"+contadorIDs;
+                        }else {
+                            txt[contadorTxt-1][1] = "txt"+contadorIDs;
+                        }
+                        contadorTxt++;
                     }
-                    contadorIDs++;
-                }
-        
-                if (ER.literalesDeTexto(palabra)==true){
-                    txt[contadorTxt][0] = palabra;
-                    if (contadorTxt<10){
-                        txt[contadorTxt-1][1] = "txt0"+contadorIDs;
-                    }else {
-                        txt[contadorTxt-1][1] = "txt"+contadorIDs;
+            
+                    if (ER.literalesNumericasDecimales(palabra)==true && ER.literalesNumericasHexadecimales(palabra)==false){
+                        val[contadorVal-1][0] = palabra;
+                        val[contadorVal-1][1] = palabra;
+                        contadorVal++;
                     }
-                    contadorTxt++;
+            
+                    if(ER.literalesNumericasHexadecimales(palabra)==true ){
+                        
+                        val[contadorVal-1][0] = palabra;
+                        val[contadorVal-1][1] = Limpiador.convertirHexaADecimal(palabra);
+                        contadorVal++;
+                    }
                 }
-        
-                if (ER.literalesNumericasDecimales(palabra)==true && ER.literalesNumericasHexadecimales(palabra)==false){
-                    val[contadorVal-1][0] = palabra;
-                    val[contadorVal-1][1] = palabra;
-                    contadorVal++;
-                }
-        
-                if(ER.literalesNumericasHexadecimales(palabra)==true ){
+    
+    
+                    File archivoLista = new File("uwu.txt"); //algo.lex
+                    File archivoMatrices = new File("tipos.txt"); //algo.lex
                     
-                    val[contadorVal-1][0] = palabra;
-                    val[contadorVal-1][1] = Limpiador.convertirHexaADecimal(palabra);
-                    contadorVal++;
-                }
+                    ManipuladorArchivos.crearArchivo(archivoLista);
+                    ManipuladorArchivos.crearArchivo(archivoMatrices);
+                    
+                    ManipuladorArchivos.imprimirLista(palabrasLimpiasConOperadores, archivoLista);
+                    ManipuladorArchivos.imprimirArreglos(ids, txt,val, archivoMatrices);
             }
 
-            File archivoLista = new File("uwu.txt"); //algo.lex
-                File archivoMatrices = new File("tipos.txt"); //algo.lex
-                
-                ManipuladorArchivos.crearArchivo(archivoLista);
-                ManipuladorArchivos.crearArchivo(archivoMatrices);
-                
-                ManipuladorArchivos.imprimirLista(palabrasLimpiasConOperadores, archivoLista);
-                ManipuladorArchivos.imprimirArreglos(ids, txt,val, archivoMatrices);
                 
         } catch (IOException e) {
             e.printStackTrace();
