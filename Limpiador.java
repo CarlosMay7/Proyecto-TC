@@ -96,24 +96,24 @@ public class Limpiador {
             }
     
             cadenaSinSuma = limpiarSuma(cadenaLimpiar);
-            for (int contsigno=0; contsigno<(cadenaSinSuma.length)-1;contsigno++){
-                cadenaSinSuma[contsigno]= cadenaSinSuma[contsigno].concat("+");
+            for (int contsigno1=0; contsigno1<(cadenaSinSuma.length)-1;contsigno1++){
+                cadenaSinSuma[contsigno1]= cadenaSinSuma[contsigno1].concat("+");
             }
     
             for (contadorResta =0; contadorResta<cadenaSinSuma.length; contadorResta++){
                 cadenaSinResta = limpiarResta(cadenaSinSuma[contadorResta]);
-                for (int contsigno=0; contsigno<(cadenaSinResta.length)-1;contsigno++){
-                    cadenaSinResta[contsigno]= cadenaSinResta[contsigno].concat("-");
+                for (int contsigno2=0; contsigno2<(cadenaSinResta.length)-1;contsigno2++){
+                    cadenaSinResta[contsigno2]= cadenaSinResta[contsigno2].concat("-");
                 }
                 for (contadorMulti=0; contadorMulti<cadenaSinResta.length;contadorMulti++){ 
                     cadenaSinMulti = limpiarMulti(cadenaSinResta[contadorMulti]);
-                    for (int contsigno=0; contsigno<(cadenaSinMulti.length)-1;contsigno++){
-                        cadenaSinMulti[contsigno]= cadenaSinMulti[contsigno].concat("*");
+                    for (int contsigno3=0; contsigno3<(cadenaSinMulti.length)-1;contsigno3++){
+                        cadenaSinMulti[contsigno3]= cadenaSinMulti[contsigno3].concat("*");
                     }
                     for (contadorDiv=0; contadorDiv<cadenaSinMulti.length;contadorDiv++){
                         cadenaSinDivision = limpiarDiv(cadenaSinMulti[contadorDiv]);
-                        for (int contsigno=0; contsigno<(cadenaSinDivision.length)-1;contsigno++){
-                            cadenaSinDivision[contsigno]= cadenaSinDivision[contsigno].concat("/");
+                        for (int contsigno4=0; contsigno4<(cadenaSinDivision.length)-1;contsigno4++){
+                            cadenaSinDivision[contsigno4]= cadenaSinDivision[contsigno4].concat("/");
                         }
                         for (contadorPalabrasLimpias=0; contadorPalabrasLimpias<cadenaSinDivision.length;contadorPalabrasLimpias++){
 
@@ -154,6 +154,9 @@ public class Limpiador {
     public static String [] limpiarAsignacion (String cadenaLimpiar){
 
         String[] asignacionSeparado = cadenaLimpiar.split("=");
+        if(asignacionSeparado[0].contains(" ")){
+            asignacionSeparado[0] = asignacionSeparado[0].replaceAll(" ", "");
+        }
         
         return asignacionSeparado;
     }
@@ -197,13 +200,16 @@ public class Limpiador {
 
     public static String[] limpiarReservadas (String cadenaLimpiar, String [] palabrasReservadas){
         String [] reservadasSeparado=null;
+        String imprime [] = new String[2];
 
         for (String str : palabrasReservadas){
             if (cadenaLimpiar.contains(str)){
                 if (!(str.equals("IMPRIME"))){
                     reservadasSeparado = limpiarEspacio(cadenaLimpiar);
                 } else {
-                    
+                    imprime[0]="IMPRIME";
+                    imprime[1]=cadenaLimpiar.substring(8);
+                    reservadasSeparado=imprime;
                 }
             }
         }

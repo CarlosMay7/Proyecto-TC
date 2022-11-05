@@ -9,7 +9,7 @@ public class AnalizadorLexico {
     public static void analisisL(String nombreArchivo){
         String linea;
         int contadorLinea=0;
-        boolean crear=true;
+        boolean crear=true; 
         ArrayList<String> palabrasLimpias = new ArrayList<>();
         ArrayList<String> palabrasLimpiasConOperadores = new ArrayList<>();
         ArrayList<String> PalabrasSinOperadores = new ArrayList<>();
@@ -30,24 +30,14 @@ public class AnalizadorLexico {
                         crear = false;
                     }
                 }
-                
-                //Aquí se puede hacer la función de validación de las palabras, si alguna no cumple pueden modificar el ArrayList y ya 
-            
+                            
                 for (String palabra : PalabrasSinOperadores){
                     palabrasLimpias.add(palabra);
                 }
 
                 for (String str : palabrasConOperadores){
                     palabrasLimpiasConOperadores.add(str);
-                }
-                //Aquí haré la función de imprimir 
-
-                //checar si está en el lenguaje  |
-                //escribir tokens en archivo (adentro se llamara a los metodos de separacion por cada operador) |
-                //metodo de convertir hexa a decimal |
-                /*for (String palabra : palabrasLimpias){
-                    System.out.println(palabra);
-                }  */          
+                }  
             }
             if (crear == true){
                 String [][] ids = new String [palabrasLimpias.size()][2];
@@ -65,13 +55,12 @@ public class AnalizadorLexico {
                         }
                         contadorIDs++;
                     }
-            
                     if (ER.literalesDeTexto(palabra)==true){
-                        txt[contadorTxt][0] = palabra;
+                        txt[contadorTxt-1][0] = palabra;
                         if (contadorTxt<10){
-                            txt[contadorTxt-1][1] = "txt0"+contadorIDs;
+                            txt[contadorTxt-1][1] = "txt0"+contadorTxt;
                         }else {
-                            txt[contadorTxt-1][1] = "txt"+contadorIDs;
+                            txt[contadorTxt-1][1] = "txt"+contadorTxt;
                         }
                         contadorTxt++;
                     }
@@ -91,8 +80,8 @@ public class AnalizadorLexico {
                 }
     
     
-                    File archivoLista = new File("uwu.txt"); //algo.lex
-                    File archivoMatrices = new File("tipos.txt"); //algo.lex
+                    File archivoLista = new File("programa.lex"); 
+                    File archivoMatrices = new File("programa.sim"); 
                     
                     ManipuladorArchivos.crearArchivo(archivoLista);
                     ManipuladorArchivos.crearArchivo(archivoMatrices);
@@ -104,78 +93,7 @@ public class AnalizadorLexico {
                 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-
-/*
-        try {
-            File codigo = new File(nombreArchivo);
-            try (Scanner archivo = new Scanner(codigo)) {
-                System.out.println("Entre a escribir");
-                while(archivo.hasNextLine()){
-                    contadorLinea++;
-                    linea = archivo.nextLine();
-                    System.out.println(linea);
-                    PalabrasSinOperadores = Limpiador.limpiarTodo(linea);
-                    System.out.println("sigo");
-
-                    palabrasConOperadores = Limpiador.limpiarConOperadores(linea);
-
-                    for (String str : PalabrasSinOperadores){
-                        if (ER.verificarER(str)==false){
-                            System.out.println("Error en la linea "+contadorLinea+" en la palabra "+str);
-                        }
-                    }
-                    
-                    //Aquí se puede hacer la función de validación de las palabras, si alguna no cumple pueden modificar el ArrayList y ya 
-                
-                    for (String palabra : PalabrasSinOperadores){
-                        palabrasLimpias.add(palabra);
-                    }
-
-                    for (String str : palabrasConOperadores){
-                        palabrasLimpiasConOperadores.add(str);
-                    }
-                    //Aquí haré la función de imprimir 
-
-                    //checar si está en el lenguaje  |
-                    //escribir tokens en archivo (adentro se llamara a los metodos de separacion por cada operador) |
-                    //metodo de convertir hexa a decimal |
-                    for (String palabra : palabrasLimpias){
-                        System.out.println(palabra);
-                    }
-                }
-
-                String [][] ids = new String [palabrasLimpias.size()][2];
-                String [][] txt = new String [palabrasLimpias.size()][2];
-                String [][] val = new String [palabrasLimpias.size()][2];
-                int contadorIDs=0, contadorTxt=0, contadorVal=0;
-                
-                System.out.println(palabrasLimpias.size());
-
-                for (String palabra : palabrasLimpias){
-                    ER.clasificarPalabra(palabra, ids, txt, val, contadorIDs, contadorTxt, contadorVal);
-                    System.out.println(contadorIDs);
-                }
-
-
-                /*
-                File archivoLista = new File("uwu.txt"); //algo.lex
-                File archivoMatrices = new File("tipos.txt"); //algo.lex
-                
-                ManipuladorArchivos.crearArchivo(archivoLista);
-                ManipuladorArchivos.crearArchivo(archivoMatrices);
-                
-                ManipuladorArchivos.imprimirLista(palabrasLimpias, archivoLista);
-                ManipuladorArchivos.imprimirArreglos(ids, txt,val, archivoMatrices);
-                
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }  
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }*/        
+        }     
     }
 }
 

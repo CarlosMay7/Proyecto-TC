@@ -4,10 +4,13 @@ PROGRAMA prueba
 VarX = 100
 LEE Num
 VarY=0xA1
-VarZ= VarY + 0x1D
+VarZ = VarY / 0x1D *10+25-654
 VarX = VarX * Num
 IMPRIME "Variable X es"
 IMPRIME VarX
-IMPRIME “Varaible Z es“
+IMPRIME "Varaible Z es"
 IMPRIME VarZ
+/*8554874553346ygd
 FINPROG 
+hygt5fds
+78525

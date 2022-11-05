@@ -64,7 +64,6 @@ public class ER {
                 coincidencia = true;
                 break;
             }
-            //caso especial imprime
         }
 
         return coincidencia;
@@ -96,7 +95,7 @@ public class ER {
 
         if(identificadores(palabraRevisar) || literalesDeTexto(palabraRevisar) || literalesNumericasDecimales(palabraRevisar)
         || literalesNumericasHexadecimales(palabraRevisar) || operadoresNumericos(palabraRevisar)
-        || palabrasReservadas(palabraRevisar) || asignacion(palabraRevisar) || comentario(palabraRevisar) == true){
+        || palabrasReservadas(palabraRevisar) || asignacion(palabraRevisar) || comentario(palabraRevisar)){
             validar = true;
         }  else{
             validar = false;
