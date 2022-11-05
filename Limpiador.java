@@ -58,7 +58,6 @@ public class Limpiador {
         }
         
         return palabrasLimpias;
-        
     }
 
     public static ArrayList<String> limpiarConOperadores (String cadenaLimpiar){
@@ -114,7 +113,11 @@ public class Limpiador {
                         cadenaSinDivision = limpiarDiv(cadenaSinMulti[contadorDiv]);
                         for (int contsigno4=0; contsigno4<(cadenaSinDivision.length)-1;contsigno4++){
                             cadenaSinDivision[contsigno4]= cadenaSinDivision[contsigno4].concat("/");
+                            for(String str : cadenaSinDivision){
+                                System.out.println(str);
+                            }
                         }
+
                         for (contadorPalabrasLimpias=0; contadorPalabrasLimpias<cadenaSinDivision.length;contadorPalabrasLimpias++){
 
                             if(cadenaSinDivision[contadorPalabrasLimpias].contains(" ")){
@@ -123,24 +126,25 @@ public class Limpiador {
                             if (cadenaSinDivision[contadorPalabrasLimpias].contains("+")){
                                 palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias].substring(0,cadenaSinDivision[contadorPalabrasLimpias].length()-1)); 
                                 palabrasLimpias.add("+");
-                                break;
+                                continue;
                             } 
                             if (cadenaSinDivision[contadorPalabrasLimpias].contains("-")){
                                 palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias].substring(0,cadenaSinDivision[contadorPalabrasLimpias].length()-1)); 
                                 palabrasLimpias.add("-");
-                                break;
+                                continue;
                             } 
                             if (cadenaSinDivision[contadorPalabrasLimpias].contains("*")){
                                 palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias].substring(0,cadenaSinDivision[contadorPalabrasLimpias].length()-1)); 
                                 palabrasLimpias.add("*");
-                                break;
+                                continue;
                             } 
                             if (cadenaSinDivision[contadorPalabrasLimpias].contains("/")){
                                 palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias].substring(0,cadenaSinDivision[contadorPalabrasLimpias].length()-1)); 
                                 palabrasLimpias.add("/");
-                                break;
+                                continue;
                             } 
-                                palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias]);
+                            
+                            palabrasLimpias.add(cadenaSinDivision[contadorPalabrasLimpias]);
 
                         }
                     }
@@ -188,8 +192,6 @@ public class Limpiador {
 
         return espacioSeparado;
     }
-
-
 
     public static String [] limpiarDiv (String CadenaLimpiar){
 
