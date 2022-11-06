@@ -26,11 +26,10 @@ public class ER {
     
     public static boolean literalesNumericasDecimales(String palabraRevisar){
 
-        Pattern patron = Pattern.compile("[0-9-.].+");
+        Pattern patron = Pattern.compile("[0-9-.]");
         Matcher matcher = patron.matcher(palabraRevisar);
 
         boolean coincidencia = matcher.matches();
-
         return coincidencia; 
     }
 
