@@ -92,7 +92,7 @@ public class AnalizadorLexico {
 
                 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("No se encuentra un archivo con ese nombre");                
         }     
     }
 }
