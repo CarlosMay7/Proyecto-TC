@@ -1,0 +1,13 @@
+# Programa en lenguaje MIO
+PROGRAMA areaDeUnTriangulo
+# Asignar Valores
+IMPRIME "Escriba el valor de la base"
+LEE Base
+IMPRIME "Escriba el valor de la altura"
+LEER Altura
+# Encontrar area
+01Mult = Base * Altura
+_Area = 01Mult / 2
+IMPRIME "El area del triangulo es"
+IMPRIME _Area
+FINPROG

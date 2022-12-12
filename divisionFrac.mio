@@ -1,0 +1,20 @@
+# Programa en lenguaje MIO
+PROGRAMA divisionFrac
+# Asignar valores fraccion uno
+LEE num1
+LEE denom1
+Num1 = num1
+Denom1 = denom1
+# Asignar valores fraccion dos
+LEE num2
+LEE denom2
+Num2 = num2
+Denom2 = denom2
+# Realizar operación
+NuevoNum = Num1 * Denom2
+NuevoDenom = Denom1 * Num2
+IMPRIME "El numerador del resultado es"
+IMPRIME NuevoNum
+IMPRIME "El denominador del resultado es"
+IMPRIME NuevoDenom
+FINPROG
