@@ -1,24 +1,16 @@
 IDS
-hexadecimales id01
-Num1 id02
-Num2 id03
-Num3 id04
-Num4 id05
-Resullt_1 id06
-Num1 id07
-Num2 id08
-Result_1 id09
-Result_2 id10
-Num3 id11
-Num4 id12
-Result_2 id13
+areaDeUnTriangulo id01
+Base id02
+Altura id03
+MultBase id04
+Altura id05
+Area id06
+Mult2 id07
+Area id08
 
 TXT
-"El resultado de la multiplicacion es" txt01
-"El resultado de la suma es" txt02
+"Escriba el valor de la base" txt01
+"Escriba el valor de la altura" txt02
+"El area del triangulo es" txt03
 
 VAL
-0x5C 92
-0x15B 347
-0x2D6 726
-0xE1 225

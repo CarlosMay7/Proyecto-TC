@@ -3,11 +3,12 @@ PROGRAMA areaDeUnTriangulo
 # Asignar Valores
 IMPRIME "Escriba el valor de la base"
 LEE Base
+PROGRAMA NuevoPrograma
 IMPRIME "Escriba el valor de la altura"
-LEER Altura
+Altura
 # Encontrar area
-01Mult = Base * Altura
-_Area = 01Mult / 2
+Mult  Base * Altura
+Area = Mult / 2
 IMPRIME "El area del triangulo es"
-IMPRIME _Area
+IMPRIME Area
 FINPROG

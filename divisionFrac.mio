@@ -14,6 +14,7 @@ Denom2 = denom2
 NuevoNum = Num1 * Denom2
 NuevoDenom = Denom1 * Num2
 IMPRIME "El numerador del resultado es"
+uwu
 IMPRIME NuevoNum
 IMPRIME "El denominador del resultado es"
 IMPRIME NuevoDenom

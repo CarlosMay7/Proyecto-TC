@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class AnalizadorLexico {
 
-    public static void analisisL(String nombreArchivo){
+    public static boolean analisisL(String nombreArchivo){
         String linea;
         int contadorLinea=0;
-        boolean crear=true; 
+        boolean crear=true, correcto=false; 
         ArrayList<String> palabrasLimpias = new ArrayList<>();
         ArrayList<String> palabrasLimpiasConOperadores = new ArrayList<>();
         ArrayList<String> PalabrasSinOperadores = new ArrayList<>();
@@ -88,12 +88,13 @@ public class AnalizadorLexico {
                     
                     ManipuladorArchivos.imprimirLista(palabrasLimpiasConOperadores, archivoLista);
                     ManipuladorArchivos.imprimirArreglos(ids, txt,val, archivoMatrices);
+                    correcto=true;
             }
-
                 
         } catch (IOException e) {
             System.out.println("No se encuentra un archivo con ese nombre");                
         }     
+        return correcto;
     }
 }
 
